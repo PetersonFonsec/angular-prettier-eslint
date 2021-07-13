@@ -1,27 +1,47 @@
-# AngularLinters
+# Angular Eslint + Prettier + Husky
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.1.
+## 1 step
 
-## Development server
+fazer a migração do tslint para o eslint
+para isso devemos instalar a lib **convert-tslint-to-eslint** usando o comando
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+```
+ng add @angular-eslint/schematics
+```
 
-## Code scaffolding
+## 2 step
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+rode o comando abaixo para fazer a migração. se você usa o TSlint default gerado pela CLI do angular pode colocar sim nas perguntas
 
-## Build
+```
+ng g @angular-eslint/schematics:convert-tslint-to-eslint {{YOUR_PROJECT_NAME}}
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+```
 
-## Running unit tests
+## 3 step
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+instale o prettier.
 
-## Running end-to-end tests
+```
+npm install -D prettier eslint-config-prettier eslint-plugin-prettier
+```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+## 4 step
 
-## Further help
+no seu arquivo **.eslintrc.json** no campo extends adicione os **eslint:recommended** e o **plugin:prettier/recommended**
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```
+"extends": [
+  "eslint:recommended",
+  "plugin:prettier/recommended"
+]
+```
+
+## 5 step
+
+crie o arquivo .eslintignore e ignore os arquivos de testes
+
+```
+**/*.spec.ts
+src/test.ts
+```
